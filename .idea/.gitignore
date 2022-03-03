@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+markdown.xml
+modules.xml
+typing-game-with-js.iml
+vcs.xml
