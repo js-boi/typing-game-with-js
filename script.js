@@ -60,7 +60,7 @@ async function RenderNextSentence() {
 
 
 let startTime;
-let originTime = 30;
+let originTime = 5;
 
 function StartTimer() {
     timer.innerText = originTime;
@@ -68,12 +68,18 @@ function StartTimer() {
     // console.log(startTime);
 
     setInterval(() => {
-        timer.innerText = originTime - getTimerTime();
+        timer.innerText = originTime - GetTimerTime();
+        if(timer.innerText <= 0) TimeUp();
     }, 1000);
 }
 
-function getTimerTime() {
+// カウントダウンする（カウントし始めた時間 - 現在の時刻）
+function GetTimerTime() {
     return Math.floor((new Date() - startTime) / 1000);
+}
+
+function TimeUp() {
+    RenderNextSentence();
 }
 
 
