@@ -1,16 +1,10 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Zen+Antique&display=swap");
-
-
 *, *::before, *::after {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
-  font-family: "Poppins", sans-serif;
-}
+  font-family: "Poppins", sans-serif; }
 
-// 全体
 .container {
   height: 100vh;
   display: flex;
@@ -18,21 +12,13 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(
-                  to right top,
-                  rgb(255, 203, 78),
-                  rgb(255, 148, 72) 85%,
-  );
-}
+  background: linear-gradient(to right top, #ffcb4e, #ff9448 85%); }
 
 .timer {
   font-size: 3.2rem;
   font-weight: 600;
-  margin-bottom: 32px;
-}
+  margin-bottom: 32px; }
 
-
-// 文字入力コンテナ
 .type_container {
   background-color: #fff;
   font-size: 2rem;
@@ -42,14 +28,11 @@ body {
   width: 1000px;
   min-height: 500px;
   max-width: 90%;
-  box-shadow: 2px 4px 8px 2px rgba(80, 80, 80, .3);
-
-  .type_display {
+  box-shadow: 2px 4px 8px 2px rgba(80, 80, 80, 0.3); }
+  .type_container .type_display {
     margin-bottom: 1rem;
-    margin-left: 1rem;
-  }
-
-  .type_input {
+    margin-left: 1rem; }
+  .type_container .type_input {
     margin-top: 4rem;
     width: 100%;
     height: 14rem;
@@ -59,17 +42,8 @@ body {
     font-size: 2.4rem;
     background: transparent;
     border: 4px solid #a47b62;
-    border-radius: 6px;
+    border-radius: 6px; }
+    .type_container .type_input:focus {
+      border-color: #5d2918; }
 
-    &:focus {
-      border-color: #5d2918;
-    }
-  }
-}
-
-
-
-
-
-
-
+/*# sourceMappingURL=style.css.map */
