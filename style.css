@@ -41,9 +41,12 @@ body {
     outline: none;
     font-size: 2.4rem;
     background: transparent;
-    border: 4px solid #a47b62;
+    border: 4px solid #a89378;
     border-radius: 6px; }
     .type_container .type_input:focus {
       border-color: #5d2918; }
+
+.correct {
+  color: #52dc52; }
 
 /*# sourceMappingURL=style.css.map */
