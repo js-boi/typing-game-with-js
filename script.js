@@ -9,13 +9,17 @@ typeInput.addEventListener("input", () => {
     const arrayValue = typeInput.value.split(""); // 入力した文字を分解する
     // console.log(arrayValue);
 
+
     sentenceArray.forEach((characterSpan, index) => {
-        if (characterSpan.innerText == arrayValue[index]) {
+        if ((arrayValue[index] == null)) {
+            characterSpan.classList.remove("correct");
+            characterSpan.classList.remove("incorrect");
+        } else if (characterSpan.innerText == arrayValue[index]) {
             characterSpan.classList.add("correct");
             characterSpan.classList.remove("incorrect");
         } else {
             characterSpan.classList.add("incorrect");
-            characterSpan.classList.remove("correct")
+            characterSpan.classList.remove("correct");
         }
     })
 })
