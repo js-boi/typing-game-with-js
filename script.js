@@ -7,22 +7,20 @@ const typeSound = new Audio("./audio/typing-sound.mp3");
 const wrongSound = new Audio("./audio/wrong.mp3");
 const correctSound = new Audio("./audio/correct.mp3");
 
-// inputテキストが合っているかどうか判定
+/* inputテキスト入力。合っているかどうかの判定 */
 typeInput.addEventListener("input", () => {
-
-    // タイプ音を付ける
+    /* タイプ音をつける */
     typeSound.play();
     typeSound.currentTime = 0;
 
-
-    const sentenceArray = typeDisplay.querySelectorAll("span");
-    // console.log(sentenceArray);
-    const arrayValue = typeInput.value.split(""); // 入力した文字を分解する
-    // console.log(arrayValue);
-
+    /* 文字と文字を比較する */
+    /* ディスプレイに表示されてるSpanタグを取得 */
+    const sentence = typeDisplay.querySelectorAll("span");
+    /* 自分で打ち込んだテキストを取得 */
+    const arrayValue = typeInput.value.split("");
     let correct = true;
-    sentenceArray.forEach((characterSpan, index) => {
-        if ((arrayValue[index] == null)) {
+    sentence.forEach((characterSpan, index) => {
+        if (arrayValue[index] == null) {
             characterSpan.classList.remove("correct");
             characterSpan.classList.remove("incorrect");
             correct = false;
@@ -33,22 +31,19 @@ typeInput.addEventListener("input", () => {
             characterSpan.classList.add("incorrect");
             characterSpan.classList.remove("correct");
             correct = false;
-
-            // 間違えた時の音を付ける
+            wrongSound.volume = 0.3;
             wrongSound.play();
             wrongSound.currentTime = 0;
-
-        }
-
-        if (correct) {
-            correctSound.play();
-            correctSound.currentTime = 0;
-            RenderNextSentence();
         }
     });
 
-
-})
+    /* 次の文章へ */
+    if (correct) {
+        correctSound.play();
+        correctSound.currentTime = 0;
+        RenderNextSentence();
+    }
+});
 
 
 // 非同期でランダムな文章を取得する
