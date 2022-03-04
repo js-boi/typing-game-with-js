@@ -3,27 +3,51 @@ const typeDisplay = document.getElementById("typeDisplay");
 const typeInput = document.getElementById("typeInput");
 const timer = document.getElementById("timer");
 
+const typeSound = new Audio("./audio/typing-sound.mp3");
+const wrongSound = new Audio("./audio/wrong.mp3");
+const correctSound = new Audio("./audio/correct.mp3");
 
 // inputテキストが合っているかどうか判定
 typeInput.addEventListener("input", () => {
+
+    // タイプ音を付ける
+    typeSound.play();
+    typeSound.currentTime = 0;
+
+
     const sentenceArray = typeDisplay.querySelectorAll("span");
     // console.log(sentenceArray);
     const arrayValue = typeInput.value.split(""); // 入力した文字を分解する
     // console.log(arrayValue);
 
-
+    let correct = true;
     sentenceArray.forEach((characterSpan, index) => {
         if ((arrayValue[index] == null)) {
             characterSpan.classList.remove("correct");
             characterSpan.classList.remove("incorrect");
-        } else if (characterSpan.innerText == arrayValue[index]) {
+            correct = false;
+        } else if (characterSpan.innerText === arrayValue[index]) {
             characterSpan.classList.add("correct");
             characterSpan.classList.remove("incorrect");
         } else {
             characterSpan.classList.add("incorrect");
             characterSpan.classList.remove("correct");
+            correct = false;
+
+            // 間違えた時の音を付ける
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+
         }
-    })
+
+        if (correct) {
+            correctSound.play();
+            correctSound.currentTime = 0;
+            RenderNextSentence();
+        }
+    });
+
+
 })
 
 
@@ -53,14 +77,14 @@ async function RenderNextSentence() {
     })
 
     // テキストボックスの中身を消す
-    typeInput.innerText = "";
+    typeInput.value = "";
 
     StartTimer();
 }
 
 
 let startTime;
-let originTime = 5;
+let originTime = 30;
 
 function StartTimer() {
     timer.innerText = originTime;
@@ -69,7 +93,7 @@ function StartTimer() {
 
     setInterval(() => {
         timer.innerText = originTime - GetTimerTime();
-        if(timer.innerText <= 0) TimeUp();
+        if (timer.innerText <= 0) TimeUp();
     }, 1000);
 }
 
